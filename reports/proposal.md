@@ -114,12 +114,18 @@ Before execution, the dispatcher will validate the tool name, dataset ID, column
 
 
 ## Model Selection
+The application uses gpt-4.1-mini through the OpenAI API.
 
-The proposed model is Qwen2.5-7B-Instruct, running locally through Ollama.
+During Week 11, I changed the initial plan from local Qwen
+through Ollama to an API-based model. The Ollama installer
+download failed and another attempt was very slow.
 
-This is a preliminary choice. During Week 11, I will check whether the available computer can run the model and whether tool calling works correctly. If a different model or a hosted API is needed, I will document the change and its reason.
+The API connection was tested with two real requests.
+The model explained the median and correctly calculated
+the median of 10, 20, 30, 40 as 25.
 
-The model connection will be separated from the analysis tools through a Python adapter.
+The API key is loaded from a local .env file.
+The .env file is excluded from Git.
 
 
 ## Architecture
@@ -130,7 +136,7 @@ The planned technologies are:
 - Streamlit for the interface.
 - pandas for CSV processing and calculations.
 - matplotlib for charts.
-- Ollama for connecting to the proposed local LLM.
+- OpenAI Python SDK for connecting to gpt-4.1-mini through the API.
 - pytest for application tests.
 
 ```mermaid
