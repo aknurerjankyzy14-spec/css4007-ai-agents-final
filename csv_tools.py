@@ -43,6 +43,7 @@ def inspect_dataset(dataframe):
             for column, count in dataframe.isna().sum().items()
         },
     }
+
 def calculate_statistics(dataframe, column):
     """Рассчитывает статистики числового столбца."""
     if column not in dataframe.columns:
@@ -60,6 +61,7 @@ def calculate_statistics(dataframe, column):
 
     return {
         "column": column,
+        "total_rows": len(values),
         "count": int(valid_values.count()),
         "missing": int(values.isna().sum()),
         "mean": float(valid_values.mean()),
@@ -68,7 +70,6 @@ def calculate_statistics(dataframe, column):
         "max": float(valid_values.max()),
         "sum": float(valid_values.sum()),
     }
-
 def main():
     file_path = (
         Path(__file__).resolve().parent

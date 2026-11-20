@@ -46,6 +46,7 @@ def test_statistics_ignore_missing_values():
 
     assert result == {
         "column": "sales",
+        "total_rows": 4,
         "count": 3,
         "missing": 1,
         "mean": 200.0,
@@ -64,7 +65,9 @@ def test_unknown_column():
 
 
 def test_text_column():
-    dataframe = pd.DataFrame({"month": ["January", "February"]})
+    dataframe = pd.DataFrame({
+        "month": ["January", "February"],
+    })
 
     with pytest.raises(ValueError, match="числовым"):
         calculate_statistics(dataframe, "month")
